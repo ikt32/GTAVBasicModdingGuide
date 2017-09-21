@@ -164,6 +164,9 @@ There's a wrong reference to the vehicle handling and/or layout. Check `vehicles
 ### Crash on startup with error on corrupt files
 You're not using a mods folder and/or referring to non-imported files in `content.xml`.
 
+### Others
+You might want to [check this thread](https://forums.gta5-mods.com/topic/4949/readme-frequently-asked-questions-installation-help-troubleshooting).
+
 ## Things to pay attention to:
 
 ### Mod packs
