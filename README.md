@@ -1,7 +1,7 @@
 # Quick start guide to modding Grand Theft Auto V
 -------------------------------------------------
 
-This is a quick and simple guide to the basics of installing and playing with mods on Grand Theft Auto V for Single Player. It won't cover MP mods like [FiveM](https://fivem.net/), or [script hooks that start the game with a custom launcher](https://ragepluginhook.net/). Modding GTA:O is not welcome here and will not be discussed.
+This is a quick and simple guide to the basics of installing and playing with mods on Grand Theft Auto V for Single Player. It won't cover MP mods like [FiveM](https://fivem.net/), or [script hooks that start the game with a custom launcher](https://ragepluginhook.net/). Modding GTA:O is not welcome here and will not be discussed. Neither is modding for consoles, the only supported platform is PC.
 
 # Table of Contents
 <!-- TOC depthFrom:1 depthTo:2 orderedList:false updateOnSave:true withLinks:true -->
