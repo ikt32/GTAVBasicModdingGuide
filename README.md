@@ -158,11 +158,17 @@ You probably installed a mod pack with many vehicles or manually installed many 
 ### `ERR_FIL_PACK_1`
 GTA V throws this error when you have too many add-on dlcpacks loaded in `dlclist.xml`. To fix this, you can remove some, or [merge dlc's (guide)](https://forums.gta5-mods.com/topic/222/tutorial-vehicles-weapons-how-to-do-add-on-s-replacer-s).
 
+### `ERR_STR_FAILURE_3`
+GTA V throws this error in most cases upon spawning an object which references a null entry or when the engine is told to stream an object greater than the max value. As this is mostly a problem when trying to spawn vehicles, you can fix this by reducing the total poly count for the vehicle, modifying the base value of the vehicle in Zmodeler3 or reducing the amount of materials that the car has. Also getting rid of any embedded textures on the yft can sometimes solve this issue.
+
+### `ERR_MEM_EMBEDALLOC_GUARD_1'`
+GTA V throws this error when the engine's memory allocator cannot provide enough memory to store a singular or multiple objects. As this is mostly a problem with script mods, you can attempt to fix this by ensuring that said script is not creating too many entities.
+
 ### Crashing on entering a vehicle
-There's a wrong reference to the vehicle handling and/or layout. Check `vehicles.meta` for the correct references.
+There's a wrong reference to the vehicle handling and/or layout. Check `vehicles.meta` for the correct references. 
 
 ### Crash on startup with error on corrupt files
-You're not using a mods folder and/or referring to non-imported files in `content.xml`.
+You're not using a mods folder and/or referring to non-imported files in `content.xml`. As OpenIV.asi disables the checking of game file integrity, any message referring to corrupt game files means that either Scripthook V or OpenIV.asi is missing.
 
 ### Others
 You might want to [check this thread](https://forums.gta5-mods.com/topic/4949/readme-frequently-asked-questions-installation-help-troubleshooting).
