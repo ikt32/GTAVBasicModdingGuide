@@ -156,7 +156,7 @@ Outside of the common update woes, things can of course go wrong. Here are a few
 You probably installed a mod pack with many vehicles or manually installed many vehicles. This is related to `gameconfig.xml` and you should find [a replacement `gameconfig`](https://www.gta5-mods.com/search/gameconfig).
 
 ### `ERR_FIL_PACK_1`
-GTA V throws this error when you have too many add-on dlcpacks loaded in `dlclist.xml`. To fix this, you can remove some, or [merge dlc's (guide)](https://forums.gta5-mods.com/topic/222/tutorial-vehicles-weapons-how-to-do-add-on-s-replacer-s).
+GTA V throws this error when game memory allocation runs out, specifically when attempting to load too many DLC packs. You can fix this by, if you haven't already, installing a custom ```gameconfig.xml``` , or else use [Heap Adjuster](https://www.gta5-mods.com/tools/heap-limit-adjuster-600-mb-of-heap). If however you have already used both these methods. you can remove some, or [merge dlc's (guide)](https://forums.gta5-mods.com/topic/222/tutorial-vehicles-weapons-how-to-do-add-on-s-replacer-s).
 
 ### `ERR_STR_FAILURE_3`
 GTA V throws this error in most cases upon spawning an object which references a null entry or when the engine is told to stream an object greater than the max value. As this is mostly a problem when trying to spawn vehicles, you can fix this by reducing the total poly count for the vehicle, modifying the base value of the vehicle in Zmodeler3 or reducing the amount of materials that the car has. Also getting rid of any embedded textures on the yft can sometimes solve this issue.
