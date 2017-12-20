@@ -155,8 +155,14 @@ Outside of the common update woes, things can of course go wrong. Here are a few
 ### Infinite loading screen
 You probably installed a mod pack with many vehicles or manually installed many vehicles. This is related to `gameconfig.xml` and you should find [a replacement `gameconfig`](https://www.gta5-mods.com/search/gameconfig).
 
+### Crashing upon full screen
+If you're crashing whilst attempting to full screen your game or exiting full screen, this is mostly caused by Reshade not being configured correctly, and thus will be set to inject into the wrong DX version (should be 11). If the reshade `.dll` name is anything other than `dxgi.dll` , `d3d11.dll` or `ReShade.dll`, you're targeting the wrong version of DirectX, even if in-game you're running DX9 or 10. To fix this download the [Reshade Binary](https://reshade.me/) and target `GTA5.exe` with DX version 11. After this to ensure compatibility with Boris Vorontsov's ENB, change the `ProxyLibrary` value in `enblocal.ini` to reflect the respective ReShade dll which has just been created in the root game directory. 
+
+### Vanilla vehicle spawning upon replacing said vehicle
+A simple solution to fix replacement of vanilla vehicles, especially for old mods, is to use the search function in OpenIV (`CTRL+F3`) and search for the respective vehicle yft, and consequently replace the one in the most recent dlcpack. If you are not sure about the order in which some DLC packs were added, you can sort them by date modified.
+
 ### `ERR_FIL_PACK_1`
-GTA V throws this error when you have too many add-on dlcpacks loaded in `dlclist.xml`. To fix this, you can remove some, or [merge dlc's (guide)](https://forums.gta5-mods.com/topic/222/tutorial-vehicles-weapons-how-to-do-add-on-s-replacer-s).
+GTA V throws this error when game memory allocation runs out, specifically when attempting to load too many DLC packs. You can fix this by, if you haven't already, installing a custom `gameconfig.xml` , or else use [Heap Adjuster](https://www.gta5-mods.com/tools/heap-limit-adjuster-600-mb-of-heap). If however you have already used both these methods. you can remove some, or [merge dlc's (guide)](https://forums.gta5-mods.com/topic/222/tutorial-vehicles-weapons-how-to-do-add-on-s-replacer-s).
 
 ### `ERR_STR_FAILURE_3`
 GTA V throws this error in most cases upon spawning an object which references a null entry or when the engine is told to stream an object greater than the max value. As this is mostly a problem when trying to spawn vehicles, you can fix this by reducing the total poly count for the vehicle, modifying the base value of the vehicle in Zmodeler3 or reducing the amount of materials that the car has. Also getting rid of any embedded textures on the yft can sometimes solve this issue.
