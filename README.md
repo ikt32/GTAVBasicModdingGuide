@@ -152,6 +152,12 @@ Outside of the common update woes, things can of course go wrong. Here are a few
 
 ## Common problems:
 
+### DLC Vehicles disappear when spawning
+Rockstar disables MP cars in SP. Most trainers will fix this after an update.
+
+* [Spawn MP vehicles in SP](https://www.gta5-mods.com/scripts/mp-vehicles-in-sp) will fix this without needing to wait for an update.
+* [Add-On Vehicle Spawner](https://www.gta5-mods.com/scripts/add-on-vehicle-spawner) incorporates code from the script above.
+
 ### Infinite loading screen
 You probably installed a mod pack with many vehicles or manually installed many vehicles. This is related to `gameconfig.xml` and you should find [a replacement `gameconfig`](https://www.gta5-mods.com/search/gameconfig).
 
