@@ -1,7 +1,9 @@
 # Quick start guide to modding Grand Theft Auto V
 -------------------------------------------------
 
-This is a quick and simple guide to the basics of installing and playing with mods on Grand Theft Auto V for Single Player. It won't cover MP mods like [FiveM](https://fivem.net/), or [script hooks that start the game with a custom launcher](https://ragepluginhook.net/). Modding GTA:O is not welcome here and will not be discussed. Neither is modding for consoles, the only supported platform is PC.
+This is a quick and simple guide to the basics of installing and playing with mods on Grand Theft Auto V for Single Player. It won't cover MP mods like [FiveM](https://fivem.net/). 
+
+Modding GTA:O or console games is not welcome here and will not be discussed.
 
 # Table of Contents
 <!-- TOC depthFrom:1 depthTo:2 orderedList:false updateOnSave:true withLinks:true -->
@@ -9,14 +11,13 @@ This is a quick and simple guide to the basics of installing and playing with mo
 - [Quick start guide to modding Grand Theft Auto V](#quick-start-guide-to-modding-grand-theft-auto-v)
 - [Table of Contents](#table-of-contents)
 - [Setting things up](#setting-things-up)
-- [Must-haves](#must-haves)
+- [Essentials](#essentials)
 - [Downloading mods](#downloading-mods)
 - [Installing mods](#installing-mods)
     - [Resource replacement mods (peds, vehicles, maps)](#resource-replacement-mods-peds-vehicles-maps)
     - [Resource add-on mods (peds, vehicles, maps)](#resource-add-on-mods-peds-vehicles-maps)
     - [.oiv files](#oiv-files)
-    - [Scripts: .asi](#scripts-asi)
-    - [Scripts: .dll, .cs, .vb](#scripts-dll-cs-vb)
+    - [Scripts](#scripts)
 - [Updating mods](#updating-mods)
 - [Updating game](#updating-game)
     - [Disabling all mods](#disabling-all-mods)
@@ -25,7 +26,6 @@ This is a quick and simple guide to the basics of installing and playing with mo
 - [Troubleshooting](#troubleshooting)
     - [Common problems:](#common-problems)
     - [Things to pay attention to:](#things-to-pay-attention-to)
-- [Credits and authors](#credits-and-authors)
 - [Contributing](#contributing)
 
 <!-- /TOC -->
@@ -36,9 +36,9 @@ For a fresh start, you'll need the following things:
 * An internet connection
 * An archive manager. I recommend [7-Zip](http://www.7-zip.org/)
 * Enable showing file extensions in Explorer
-* Patience. Read the manuals!
+* Patience. __Read the manuals!__
 
-It's best to start out with an unmodded game, to prevent things from conflicting or having other instabilities. If you've tampered with the files, it's best to either re-install the game or to let Steam or RGSC verify your files before continuing. If you also had script mods installed and don't remember what to delete, just start out clean.
+It's best to start out with a clean, unmodded game, to prevent conflicts and instabilities. If you've tampered with the files, it's best to either re-install the game or to let Steam or Social Club verify your files before continuing. If you also had script mods installed and don't remember what to delete, just start out clean.
 
 For reference, the following files enable loading and running mods from the normal launcher:
 
@@ -48,16 +48,17 @@ For reference, the following files enable loading and running mods from the norm
 
 If you recognize any of these and don't exactly know why these are there, start out from scratch.
 
-# Must-haves
+# Essentials
 GTA V mods roughly exist in two distinct categories: resource mods and scripts. You'll need a couple of things to get this to work!
 
 * [ScriptHookV](http://www.dev-c.com/gtav/scripthookv/) enabled scripts for GTA V.
 * [OpenIV](http://openiv.com/) enables modifying archives and adding archives.
-* [ScriptHookVDotNet](https://github.com/crosire/scripthookvdotnet/releases) enables scripts written in .NET languages. It relies on ScriptHookV.
+* Optional: [ScriptHookVDotNet](https://github.com/crosire/scripthookvdotnet/releases) enables scripts written in .NET languages. It relies on ScriptHookV.
+* Optional: [RAGE Plugin Hook](https://ragepluginhook.net/) is like ScriptHookVDotNet, but works standalone and uses a custom launcher for the game.
 
 Download the archives or installers from the websites.
 
-Installation: Basically just follow the instructions!
+Installation: Follow the READMEs!
 * ScriptHookV: Open the archive, extract the files inside the bin folder to your GTA V root.
 * ScriptHookVDotNet: Open the archive, extract `ScriptHookVDotNet.asi` and `ScriptHookVDotNet2.dll` to your GTA V root.
 * OpenIV: Run the installer. 
@@ -96,13 +97,23 @@ Additionally, you'll want to replace `GTAV_root/mods/update/update.rpf/common/da
 
 If you download a mod that ends with `.oiv`, this means the mod author prepared a nice package for you. If you installed OpenIV properly, you can just double click the file, after which an OpenIV pacakge installation prompt will open. Check any information in the description window and press install. These mods can add files and/or __replace files__, so be sure to double-check if you've got the correct package.
 
-## Scripts: .asi
+## Scripts
 
-Scripts ending with the `.asi` extension are ScriptHookV scripts and __ALWAYS__ go in the GTA V root directory. If the script came with configuration files, follow the installation instructions for that script. Usually the archives are made so you just select the asi and the additional folder or the additional config files and put those directly in your game root directory.
+Scripts allow to add extra functionality to the game in form of extra missions, extra functionality, trainers and much alike. Scripts need to be loaded through their respective library. If you download a script, it will usually say for which library it is made.
 
-## Scripts: .dll, .cs, .vb
+Some scripts come with additional configuration files. Extract these files according to the readme of the script.
 
-Scripts ending with the `.dll`, `.cs` and `.vb` extensions are ScriptHookVDotNet mods and __ALWAYS__ go in `GTAV_root/scripts/`. As with `.asi` mods, you want to follow the instructions.
+### ScriptHookV: .asi files
+
+Scripts ending with the `.asi` extension are ScriptHookV scripts and go in the main GTA V folder.
+
+### ScriptHookVDotNet: .dll, .cs, .vb
+
+Scripts ending with the `.dll`, `.cs` and `.vb` extensions are usually ScriptHookVDotNet mods and go in the `GTAV_root/scripts/` folder.
+
+### RAGEPluginHook: .dll
+
+RAGEPluginHook go in the `GTAV_root/Plugins/` folder.
 
 # Updating mods
 
@@ -209,11 +220,5 @@ A ScriptHookVDotNet script crash is silent. The script just doesn't work any mor
 * `ScriptHookVDotNet2.log`
 * Any other logs the script might have generated
 
-# Credits and authors
-
-* ikt
-* Eddlm
-* ReNNie
-
 # Contributing
-Suggestions in any form are welcome :) You can make a [pull request on the repo](https://github.com/E66666666/GTAVBasicModdingGuide) or just comment.
+Suggestions in any form are welcome :) You can make a [pull request on the repo](https://github.com/E66666666/GTAVBasicModdingGuide), or just comment on the thread.
