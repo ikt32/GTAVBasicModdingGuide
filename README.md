@@ -5,30 +5,26 @@ This is a quick and simple guide to the basics of installing and playing with mo
 
 Modding GTA:O or console games is not welcome here and will not be discussed.
 
-# Table of Contents
-<!-- TOC depthFrom:1 depthTo:2 orderedList:false updateOnSave:true withLinks:true -->
+Contents:
 
-- [Quick start guide to modding Grand Theft Auto V](#quick-start-guide-to-modding-grand-theft-auto-v)
-- [Table of Contents](#table-of-contents)
-- [Setting things up](#setting-things-up)
-- [Essentials](#essentials)
-- [Downloading mods](#downloading-mods)
-- [Installing mods](#installing-mods)
-    - [Resource replacement mods (peds, vehicles, maps)](#resource-replacement-mods-peds-vehicles-maps)
-    - [Resource add-on mods (peds, vehicles, maps)](#resource-add-on-mods-peds-vehicles-maps)
-    - [.oiv files](#oiv-files)
-    - [Scripts](#scripts)
-- [Updating mods](#updating-mods)
-- [Updating game](#updating-game)
-    - [Disabling all mods](#disabling-all-mods)
-    - [Reverting the update (downgrade game)](#reverting-the-update-downgrade-game)
-    - [Updating your mods](#updating-your-mods)
-- [Troubleshooting](#troubleshooting)
-    - [Common problems:](#common-problems)
-    - [Things to pay attention to:](#things-to-pay-attention-to)
-- [Contributing](#contributing)
-
-<!-- /TOC -->
+* [Setting things up](#setting-things-up)
+* [Essentials](#essentials)
+* [Downloading mods](#downloading-mods)
+* [Installing mods](#installing-mods)
+  * [Resource replacement mods (peds, vehicles, maps)](#resource-replacement-mods-peds-vehicles-maps)
+  * [Resource add-on mods (peds, vehicles, maps)](#resource-add-on-mods-peds-vehicles-maps)
+  * [.oiv files](#oiv-files)
+  * [Scripts](#scripts)
+* [Updating mods](#updating-mods)
+* [Updating game](#updating-game)
+  * [Backup / Reverting the update (downgrade game)](#backup--reverting-the-update-downgrade-game)
+  * [Updating your mods](#updating-your-mods)
+* [Disabling mods](#disabling-mods)
+* [Troubleshooting](#troubleshooting)
+  * [Common problems:](#common-problems)
+  * [Things to pay attention to:](#things-to-pay-attention-to)
+* [Contributing](#contributing)
+* [Changelog](#changelog)
 
 # Setting things up  
 For a fresh start, you'll need the following things:  
@@ -48,10 +44,15 @@ For reference, the following files enable loading and running mods from the norm
 
 If you recognize any of these and don't exactly know why these are there, start out from scratch.
 
+From now on, I'll refer to the GTA V installation folder as "`GTAV_root`". Where it's installed depends on where you got the game and your installation preferences. For example, the default folder for an install on Steam is `C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V`.
+
+Finding it on Steam: `Library` -> Right-click Grand Theft Auto V -> `Manage` -> `Browse local files`
+Rockstar Games and Epic Games sadly don't have an installation folder shortcut, so you'll need to find these on your own.
+
 # Essentials
 GTA V mods roughly exist in two distinct categories: resource mods and scripts. You'll need a couple of things to get this to work!
 
-* [ScriptHookV](http://www.dev-c.com/gtav/scripthookv/) enabled scripts for GTA V.
+* [ScriptHookV](http://www.dev-c.com/gtav/scripthookv/) enables scripts for GTA V.
 * [OpenIV](http://openiv.com/) enables modifying archives and adding archives.
 * Optional: [ScriptHookVDotNet](https://github.com/crosire/scripthookvdotnet/releases) enables scripts written in .NET languages. It relies on ScriptHookV.
 * Optional: [RAGE Plugin Hook](https://ragepluginhook.net/) is like ScriptHookVDotNet, but works standalone and uses a custom launcher for the game.
@@ -72,6 +73,7 @@ It's a good idea to only download mods from trusted websites, especially script 
 
 Good resources are:
 * [GTA5-Mods.com](https://www.gta5-mods.com/)
+* [LCPDFR.com](https://www.lcpdfr.com/downloads/)
 * [dev-c.com](http://www.dev-c.com/gtav/)
 * [openiv.com](http://openiv.com/)
 
@@ -85,27 +87,41 @@ If you download a mod that replaces an original resource, like a vehicle mod tha
 
 If you download a mod that's marked as an add-on, it means it doesn't replace existing resources. They are added as DLCs. In general they follow the following set-up:  
 * The data files are placed in `GTAV_root/mods/update/x64/dlcpacks/<mod name>/dlc.rpf`
-* The entry is added to `dlclist.xml`. The exact location is `GTAV_root/mods/update/update.rpf/common/data/dlclist.xml`. This entry looks like `<Item>dlcpacks:\<mod name>\</Item>`
+* The entry is added to `dlclist.xml`. The exact location is `GTAV_root/mods/update/update.rpf/common/data/dlclist.xml`. This entry looks like `<Item>dlcpacks:\myCoolModName\</Item>`
 
-When adding an entry to `dlclist.xml`, take care to keep the opening and closing tags being __exactly__ `Item`. If they are different, the file is invalidated. 
+When adding an entry to `dlclist.xml`, take care to keep the opening and closing tags are __exactly__ `Item`. If they are different, the file is invalidated. 
 
 Some mod authors also tell you to change `extratitleupdatedata.meta`, but this is __NOT__ necessary! 
 
-Additionally, you'll want to replace `GTAV_root/mods/update/update.rpf/common/data/gameconfig.xml` with a version that supports more add-on mods. These can be [obtained on GTA5-Mods.com](https://www.gta5-mods.com/search/gameconfig). Just take care to pick the correct game version files.
+You also need to install the following tools, as they are required to make the game deal with loading more resources:
+
+* [gameconfig.xml](https://www.gta5-mods.com/search/gameconfig) (Recommended: [pnwparkfan's version](https://github.com/pnwparksfan/gameconfig))
+* [Heap Adjuster](https://www.gta5-mods.com/tools/heapadjuster)
+* [Packfile Limit Adjuster](https://www.gta5-mods.com/tools/packfile-limit-adjuster)
+
+### What version am I running?
+
+There are two versions, the GTA: Online version and the executable version. ScriptHookV, ScriptHookVDotNet, RagePluginHook and most version-dependent mods (scripts) use the executable version. You can find this by right-clicking the `GTA5.exe` file and checking the Details Tab -> File Version. As of writing, the version is `1.0.2802.0`.
+
+Some scripts only work for specific game versions. After the game updates, you might need to check back on the mod page for possibly updates.
 
 ## .oiv files
 
 If you download a mod that ends with `.oiv`, this means the mod author prepared a nice package for you. If you installed OpenIV properly, you can just double click the file, after which an OpenIV pacakge installation prompt will open. Check any information in the description window and press install. These mods can add files and/or __replace files__, so be sure to double-check if you've got the correct package.
 
+**Be aware** that `.oiv` don't have an uninstall option, so check if the mod you want to install has its own uninstaller or uninstall instructions. In the worst case, you can open the `.oiv` archive with something like 7-zip, and check `assembly.xml` for the files that are replaced.
+
 ## Scripts
 
-Scripts allow to add extra functionality to the game in form of extra missions, extra functionality, trainers and much alike. Scripts need to be loaded through their respective library. If you download a script, it will usually say for which library it is made.
+Scripts add various extra functionality to the game, like missions, expanded or new functionality, trainers and much more. Scripts need their respective library to load properly. If you download a script, it will usually say for which library it is made.
 
 Some scripts come with additional configuration files. Extract these files according to the readme of the script.
 
 ### ScriptHookV: .asi files
 
 Scripts ending with the `.asi` extension are ScriptHookV scripts and go in the main GTA V folder.
+
+Note: Some `.asi` files do not require ScriptHookV, like `OpenIV.asi`. `dinput8.dll` can load them without `ScriptHookV.dll`.
 
 ### ScriptHookVDotNet: .dll, .cs, .vb
 
@@ -123,18 +139,15 @@ For scripts, you should take note of the changelog or other comments the author 
 
 # Updating game
 
-Rockstar releases new DLC from time to time. Some mods keep working, other break. Here's a basic guide of steps to take to prevent this, or to get back up and running quickly!
+Rockstar releases new DLC from time to time. Some mods keep working, others break. Here are some basic steps to prepare for, and prevent your game from breaking, or to get back up and running quickly!
 
-## Disabling all mods
-Moving or renaming `dinput8.dll` will stop ScriptHookV, ScriptHookVDotNet and OpenIV from loading. If you properly used OpenIV's mod folder, this disables all mods and you should be able to play the unmodded game and even join a GTA:O session.
-
-## Reverting the update (downgrade game)
-__BEFORE__ a new DLC update drops, Rockstar hypes it up. Once a new DLC is announced, ensure you have a backup of the following files
+## Backup / Reverting the update (downgrade game)
+__BEFORE__ a new DLC update drops, Rockstar announces it on their social media and news channels. Once a new DLC is announced, ensure you have a backup of the following files:
 
 * `GTAV_root/update/update.rpf`
+* `GTAV_root/update/update2.rpf`
 * `GTAV_root/GTA5.exe`
 * `GTAV_root/GTAVLauncher.exe`
-* `steam_api64.dll`
 
 It's smart to label these. I put them in a folder with the executable version. For Smuggler's Run, this is `v1.0.1180.2`. When the next update drops and you want to revert, back up the new files and replace them with your old backups.
 
@@ -145,17 +158,26 @@ You can also choose to update your mods. In general it's a good idea to wait unt
 Each update, you'll need to update your `GTAV_root/mods/update/update.rpf` to match the version of `GTAV_root/update/update.rpf`. You can then transplant your changes from your old modded `update.rpf` to the new `update.rpf`.
 
 Things to pay attention to:
-* The new `dlclist.xml` probably has a new entry, so take care copy-pasting your modded `dlclist.xml`.
-* `gameconfig.xml` is very version-dependent. If you use add-on mods, it's __very__ likely you'll need to wait for a new updated `gameconfig.xml` that supports add-ons.
-* Some replacement mods might not work after updating. In this case, the new update package overwrites old changes. (Rockstar sometimes fixes old models)
+* The new `dlclist.xml` probably has a new entry, so take care copy-pasting your modded `dlclist.xml` if you want to play with the new DLC content. Some mods also require new DLC content.
+* `gameconfig.xml` is very version-dependent. If you use add-on mods, it's __very__ likely you'll need to update `gameconfig.xml` that supports add-ons.
+* Some replacement mods might not work after updating. In this case, the new update package overwrites old changes. (Rockstar sometimes fixes older content)
 
 ### Script mods
 __Most__ scripts rely on ScriptHookV and just use natives. These will work after ScriptHookV gets updated for the new update, and won't need updating themselves.
 
 ScriptHookVDotNet uses offsets for peds and vehicles, so it's wise to wait until ScriptHookVDotNet gets an update to support the new update. __Most__ ScriptHookVDotNet scripts don't need updating themselves.
 
-If a script crashes after an update, just disable it and keep an eye on the mod page. The author might update the script in the coming hours/days/weeks/months/years. It might help to notify the script author.
+If a script crashes after an update, just disable it and keep an eye on the mod page. The author may update the script in the (near) future. It may help to notify the script author, though they usually are aware already.
 
+# Disabling mods
+
+GTA5-Mods.com does not support playing GTA: Online on a modded installation, and this is prohibited by Rockstar.
+
+That being said, if you installed resource mods using the `mods` folder feature from OpenIV, you can quickly disable all mods.
+
+Moving or renaming `dinput8.dll` to something else, will stop all `.asi` files from loading. This means all scripts, ScriptHookV, ScriptHookVDotNet and OpenIV won't load, and you should be able to load into GTA: Online, provided you are running the latest game version and no original files have been changed.
+
+*Be aware that visual mods like ENB, Reshade come with `d3d11.dll`, which may be blocked. Also rename this `d3d11.dll` to something else for a "clean" install.*
 
 # Troubleshooting
 
@@ -166,11 +188,13 @@ Outside of the common update woes, things can of course go wrong. Here are a few
 ### DLC Vehicles disappear when spawning
 Rockstar disables MP cars in SP. Most trainers will fix this after an update.
 
-* [Spawn MP vehicles in SP](https://www.gta5-mods.com/scripts/mp-vehicles-in-sp) will fix this without needing to wait for an update.
-* [Add-On Vehicle Spawner](https://www.gta5-mods.com/scripts/add-on-vehicle-spawner) incorporates code from the script above.
+* [Add-On Vehicle Spawner](https://www.gta5-mods.com/scripts/add-on-vehicle-spawner) automatically enables MP vehicles in SP.
+* [Enhanced Native Trainer](https://www.gta5-mods.com/scripts/enhanced-native-trainer-zemanez-and-others) also does this.
+* [Simple Trainer](https://www.gta5-mods.com/scripts/simple-trainer-for-gtav) also works, but needs to be updated after each patch.
+* [Menyoo](https://github.com/MAFINS/MenyooSP/releases) also works, but needs to be updated after each patch.
 
-### Infinite loading screen
-You probably installed a mod pack with many vehicles or manually installed many vehicles. This is related to `gameconfig.xml` and you should find [a replacement `gameconfig`](https://www.gta5-mods.com/search/gameconfig).
+### Infinite loading screen or crash during loading
+You probably installed a mod pack with many vehicles or manually installed too many vehicles. This is related to `gameconfig.xml` and you should find [a replacement `gameconfig`](https://www.gta5-mods.com/search/gameconfig). Also don't forget the heap adjuster!
 
 ### Crashing upon full screen
 If you're crashing whilst attempting to full screen your game or exiting full screen, this is mostly caused by Reshade not being configured correctly, and thus will be set to inject into the wrong DX version (should be 11). If the reshade `.dll` name is anything other than `dxgi.dll` , `d3d11.dll` or `ReShade.dll`, you're targeting the wrong version of DirectX, even if in-game you're running DX9 or 10. To fix this download the [Reshade Binary](https://reshade.me/) and target `GTA5.exe` with DX version 11. After this to ensure compatibility with Boris Vorontsov's ENB, change the `ProxyLibrary` value in `enblocal.ini` to reflect the respective ReShade dll which has just been created in the root game directory. 
@@ -204,7 +228,7 @@ Mod packs can add lots of resources. Usually when installing mod packs, it's nec
 * [IVPack](https://www.gta5-mods.com/vehicles/ivpack-gtaiv-vehicles-in-gtav)
 * [VanillaWorks Extended](https://www.gta5-mods.com/vehicles/vanillaworks-extended-pack-add-on-oiv-tuning-liveries-vanillaworks-and-other-modders)
 
-A small note about "Redux": This is mainly composed of resources stolen from various mod authors. You won't find much support for an unstable game with Redux. Be a nice person and avoid that stolen mess :)
+A small note about "Redux": This is/was mainly composed of resources taken without permission from various mod authors. The community will be hesitant or unwilling to support games with a Redux installation.
 
 ### LODs  
 [Level of detail](https://en.wikipedia.org/wiki/Level_of_detail) is important for performance and appearance. Some vehicle mods have no good LODs, thus will either require a lot of performance even at a distance, or have a disappearing body. Take care installing these mods, especially if they are replacements. Your framerate can suffer significantly, no matter how good your computer is!
@@ -221,4 +245,11 @@ A ScriptHookVDotNet script crash is silent. The script just doesn't work any mor
 * Any other logs the script might have generated
 
 # Contributing
-Suggestions in any form are welcome :) You can make a [pull request on the repo](https://github.com/E66666666/GTAVBasicModdingGuide), or just comment on the thread.
+Suggestions are welcome! You can make an [issue on this repository](https://github.com/E66666666/GTAVBasicModdingGuide), or poke me on the GTA5-Mods.com Discord server.
+
+# Changelog
+2020-05-21: Removed broken "MP Vehicles in SP" and add Sjaak's TrainerV.
+2021-03-12: Added "What's my game version?"
+2021-04-17: Clarified "GTAV_root"
+2021-04-19: Added required tools for add-ons
+2022-12-20: Added Packfile Limit Adjuster to tools, and LCPDFR as safe website
